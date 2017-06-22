@@ -7,7 +7,7 @@ In order to use this sample you must have Apple FPS Deployment Package.
 
 ## Important Files
 
-[AssetLoaderDelegate.m](drm-quick-start-ios/iOS\ FPS\ Client\ AxinomDRM/iOS\ FPS\ Client\ AxinomDRM/AssetLoaderDelegate.m)
+__AssetLoaderDelegate.m__
 
 AssetLoaderDelegate is the class that manages responding to content key requests for FairPlay Streaming protected content.
 
@@ -16,7 +16,7 @@ Implements communications with the Axinom DRM license server.
 Attaches the license token to license requests.
 
 
-[mediaResource.plist](drm-quick-start-ios/iOS\ FPS\ Client\ AxinomDRM/iOS\ FPS\ Client\ AxinomDRM/mediaResource.plist)
+__mediaResource.plist__
 
 If you wish to add your own HLS streams to test with this sample, you can do this by adding an entry into the mediaResource.plist that is part of the Xcode Project. Keys you need to provide values for:
 
