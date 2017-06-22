@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>media_url</key>
+	<string>http://media.axprod.net/FairPlay/Encrypted_SintelDemo_DefaultKeySeed/prog_index.m3u8</string>
+	<key>drm_license_url</key>
+	<string>http://drm-fairplay-licensing.axtest.net/AcquireLicense</string>
+	<key>X-AxDRM-Message</key>
+	<string>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiNjllNTQwODgtZTllMC00NTMwLThjMWEtMWViNmRjZDBkMTRlIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsImtleXMiOlt7ImlkIjoiOWU4NmQ2ZTYtZGEwZS00NjA2LTlkMGQtNzE5ZjI2NDFhOTQ5In1dfX0.z_mp07RqYJjPICqKW8IC3WUrl7CcCFVXnQLXwDzqFyo</string>
+	<key>fps_certificate_url</key>
+	<string></string>
+</dict>
+</plist>
