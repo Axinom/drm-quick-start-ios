@@ -1,13 +1,16 @@
 # drm-quick-start-ios
 
-This iOS sample application demonstrates HTTP Live Streams (HLS) videos play back with FairPlay Streaming (FPS) Content Protection using Axinom DRM. 
-This project uses AVFoundation framework and it is based on "FairPlay Streaming Programming Guide".
+This iOS sample application demonstrates how to use Axinom DRM for the playback of HTTP Live Streaming (HLS) content protected with FairPlay Streaming (FPS). This project uses AVFoundation framework and is based on "FairPlay Streaming Programming Guide".
 
-In order to use this sample you must have Apple FPS Deployment Package which you can request from here - https://developer.apple.com/streaming/fps/.
+## Prerequisites
 
-in addition, to get access to license server URL and credentials to use it, you have to request Axinom DRM demo account, which can be done from here - https://drm.axinom.com/evaluation-account/
+In order to use this sample the following prerequisities should be met:
 
-Additional documentation on creating X-AxDRM-Message and trying out DRM on other platforms can be found here - https://github.com/Axinom/drm-quick-start
+1. Access to Apple FPS Deployment Package. This is available only to content owners and can be obtained here: https://developer.apple.com/streaming/fps/.
+
+2. Set up Axinom DRM demo account. Registration can be performed here: https://drm.axinom.com/evaluation-account/.
+
+3. Ability to generate Axinom DRM License Tokens. Documentation on this can be found here: https://github.com/Axinom/drm-quick-start.
 
 ## Important Files
 
