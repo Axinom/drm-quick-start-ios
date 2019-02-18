@@ -2,8 +2,8 @@
 //  AssetLoaderDelegate.m
 //  iOS FPS Client AxinomDRM
 //
-//  Created by Dace Kotlere on 6/20/17.
-//  Copyright © 2017 Dace Kotlere. All rights reserved.
+//  Created by Axinom.
+//  Copyright (c) Axinom. All rights reserved.
 //
 
 #import "AssetLoaderDelegate.h"
@@ -34,29 +34,23 @@ typedef void(^ContentKeyAndLeaseExpiryRequestCompletion)(NSData *response, NSErr
         NSString *assetStr = [url.absoluteString stringByReplacingOccurrencesOfString:@"skd://" withString:@""];
         NSData *assetId = [NSData dataWithBytes: [assetStr cStringUsingEncoding:NSUTF8StringEncoding] length:[assetStr lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
 
-        /*
-         To obtain the Server Playback Context (SPC), we call
-         AVAssetResourceLoadingRequest.streamingContentKeyRequestData(forApp:contentIdentifier:options:)
-         using the information we obtained earlier.
-         */
+         // To obtain the license request (Server Playback Context or SPC in Apple's terms), we call
+         // AVAssetResourceLoadingRequest.streamingContentKeyRequestData(forApp:contentIdentifier:options:)
+         // using the information we obtained earlier.
         NSError *error = nil;
         NSData *requestBytes = [loadingRequest streamingContentKeyRequestDataForApp:certificate
                                                                   contentIdentifier:assetId
                                                                             options:nil
                                                                               error:&error];
-        // Send the SPC message to the Key Server.
+        // Send the license request to the license server. The encrypted license response (Content Key
+        // Context or CKC in Apple's terms) will contain the content key and associated playback policies.
         [self requestContentKeyAndLeaseExpiryfromKeyServerModuleWithRequestBytes:requestBytes
                                                              completion:^(NSData *response, NSError *error) {
-                                                                 // The Key Server returns the CK inside an encrypted Content Key Context (CKC) message in response to
-                                                                 // the app’s SPC message.  This CKC message, containing the CK, was constructed from the SPC by a
-                                                                 // Key Security Module in the Key Server’s software.
                                                                  if (response) {
-                                                                     // Provide the CKC message (containing the CK) to the loading request.
+                                                                     // Provide license response to the loading request.
                                                                      [dataRequest respondWithData:response];
-                                                                     /*
-                                                                      You should always set the contentType before calling finishLoading() to make sure you
-                                                                      have a contentType that matches the key response.
-                                                                      */
+                                                                     // You should always set the contentType before calling finishLoading() to make sure you
+                                                                     // have a contentType that matches the key response.                                                                    */
                                                                      loadingRequest.contentInformationRequest.contentType = AVStreamingKeyDeliveryContentKeyType;
                                                                      [loadingRequest finishLoading]; // Treat the processing of the request as complete.
                                                                  }
@@ -70,8 +64,9 @@ typedef void(^ContentKeyAndLeaseExpiryRequestCompletion)(NSData *response, NSErr
 }
 
 - (void)requestApplicationCertificateWithCompletion:(AppCertificateRequestCompletion)completion {
-    // This needs to be implemented to conform to your protocol with the backend/key security module.
-    // At a high level, this function gets the application certificate from the server in DER format.
+    // This function gets the FairPlay application certificate, expected in DER format, from the
+    // configured URL. In general, the logic to obtain the certificate is up to the playback app
+    // implementers. Implementers should use their own certificate, received from Apple upon request.
 
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
@@ -84,12 +79,12 @@ typedef void(^ContentKeyAndLeaseExpiryRequestCompletion)(NSData *response, NSErr
 }
 
 - (void)requestContentKeyAndLeaseExpiryfromKeyServerModuleWithRequestBytes:(NSData *)requestBytes completion:(ContentKeyAndLeaseExpiryRequestCompletion)completion {
-    // Send the SPC message to the Key Server.
     // Implements communications with the Axinom DRM license server.
 
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
 
+    // Send the license request to the license server.
     NSString *urlString = [[NSUserDefaults standardUserDefaults] objectForKey:AX_DRM_LICENSE_URL];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *ksmRequest = [NSMutableURLRequest requestWithURL:url];

@@ -2,8 +2,8 @@
 //  ViewController.m
 //  iOS FPS Client AxinomDRM
 //
-//  Created by Dace Kotlere on 6/13/17.
-//  Copyright © 2017 Dace Kotlere. All rights reserved.
+//  Created by Axinom.
+//  Copyright (c) Axinom. All rights reserved.
 //
 
 #import "ViewController.h"

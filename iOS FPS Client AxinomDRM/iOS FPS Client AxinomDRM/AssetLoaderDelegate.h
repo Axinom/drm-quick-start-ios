@@ -2,8 +2,8 @@
 //  AssetLoaderDelegate.h
 //  iOS FPS Client AxinomDRM
 //
-//  Created by Dace Kotlere on 6/20/17.
-//  Copyright © 2017 Dace Kotlere. All rights reserved.
+//  Created by Axinom.
+//  Copyright (c) Axinom. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
