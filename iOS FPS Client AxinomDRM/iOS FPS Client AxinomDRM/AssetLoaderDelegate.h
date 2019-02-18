@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-@import AVFoundation;
 @import AVKit;
 
 @interface AssetLoaderDelegate : NSObject <AVAssetResourceLoaderDelegate>
