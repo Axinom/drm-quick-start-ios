@@ -40,9 +40,13 @@ __fps_certificate_url__: url to FPS certificate (from your Apple FPS Deployment 
 
 ### Build
 
-Xcode 8.0 or later; iOS 10.0 SDK or later;
+Xcode 10.0 or later; iOS 12.0 SDK or later;
 
 ### Runtime
 
 iOS 9.0 or later.
 iPhone, iPad
+
+### Using Simulator
+
+__Important:__ Protected streams cannot be played back on Simulator because the delegate method -resourceLoader:shouldWaitForLoadingOfRequestedResource: only gets called when using a real device. 
